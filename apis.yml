@@ -7,8 +7,7 @@ apis:
 
       new-york-public-library-whats-on-the-menu:new-york-public-library-whats-on-the-menu
     name: New York Public Library Whats on the Menu
-    tags:
-      - API
+    tags: []
     humanURL: ' http://nypl.github.io/menus-api/?ref=public_apis'
     properties:
       - url: ' http://nypl.github.io/menus-api/?ref=public_apis'
@@ -22,8 +21,8 @@ apis:
       for you.
 name: New York Public Library Whats on the Menu
 tags:
-  - Menus
   - Libraries
+  - Menus
   - Restaurants
 type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
