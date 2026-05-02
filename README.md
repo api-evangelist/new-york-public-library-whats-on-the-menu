@@ -1,49 +1,66 @@
-# New York Public Library Whats On The Menu (new-york-public-library-whats-on-the-menu)
-The New York Public Library's What's On The Menu project is a digital collection that showcases a wealth of historical restaurant menus from the New York City area. With over 17,000 menus dating back to the 1850s, this archive provides a fascinating glimpse into the culinary history of the city. Users can browse through the menus to learn about the prices, dishes, and dining trends of the past, offering a unique window into the evolution of food culture in New York. Researchers, historians, and food enthusiasts alike can explore this collection to discover the tastes and traditions that have shaped the city's dining scene over the decades.
+# New York Public Library What's On The Menu (new-york-public-library-whats-on-the-menu)
 
-**URL:** [Visit APIs.json URL](
-https://raw.githubusercontent.com/api-search/new-york-public-library-whats-on-the-menu/refs/heads/main/apis.yml)
+The New York Public Library's What's On The Menu project is a digital collection that showcases over 17,000 historical restaurant menus from the New York City area dating back to the 1850s. The companion API provides programmatic access to menus, pages, and dishes including prices, names, dates, and full-text search. Token-based authentication is required and rate limits apply (5,000 requests/day, 2 requests/second).
+
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Contract
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Menus, Libraries, Restaurants
+- Libraries
+- Menus
+- Restaurants
+- History
+- Open Data
+- Food
 
 ## Timestamps
 
-- **Created:** 2024-11-14 
-- **Modified:** 2025-01-02 
+- **Created:** 2024-11-14
+- **Modified:** 2026-04-28
 
 ## APIs
 
-### New York Public Library Whats On The Menu
+### NYPL What's On The Menu API
 
-Theres a lot of data behind The New York Public Librarys Whats On The
-Menu?, and heres your chance to explore it. This is built for programmers
-and power-users, so if youre looking for an easier way to explore the
-dataset you may want to take a look at our Biweekly data exports, which
-are in CSV format. However if youre looking to do powerful analysis of
-historical menu data, this is the tool for you.  
+The NYPL What's On The Menu API exposes the full Menus dataset for programmatic exploration. Endpoints cover menus and their pages, dishes, search across both, and filtering by year, status, and other properties. Responses are JSON or XML. Token-based authentication is required (request access via menus@nypl.org). Daily rate limits and pagination headers are provided.
 
-**Human URL:** [ http://nypl.github.io/menus-api/?ref=public_apis]( http://nypl.github.io/menus-api/?ref=public_apis)
+**Human URL:** [http://nypl.github.io/menus-api/](http://nypl.github.io/menus-api/)
 
+**Base URL:** `http://api.menus.nypl.org`
 
-#### Tags:
+#### Tags
 
- - API
+- Libraries
+- Menus
+- Restaurants
+- History
+- Open Data
 
 #### Properties
 
-- [Documentation]( http://nypl.github.io/menus-api/?ref=public_apis)
+- [Documentation](http://nypl.github.io/menus-api/)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/openapi/new-york-public-library-whats-on-the-menu-openapi-original.yaml)
+- [Project Site](http://menus.nypl.org/)
+- [Data Exports](http://menus.nypl.org/data)
+
+#### Contact
+
+- **FN:** NYPL Menus Project
+- **Email:** menus@nypl.org
+
+## Common Properties
+
+- [Website](http://menus.nypl.org/)
+- [Documentation](http://nypl.github.io/menus-api/)
 
 ## Maintainers
 
 **FN:** Kin Lane
 
-**Email:** info@apievangelist.com
-
+**Email:** kin@apievangelist.com
