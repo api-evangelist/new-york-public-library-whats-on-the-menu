@@ -7,7 +7,7 @@ description: >-
   programmatic access to menus, pages, and dishes including prices, names,
   dates, and full-text search. Token-based authentication is required and
   rate limits apply (5,000 requests/day, 2 requests/second).
-type: Contract
+kind: contract
 position: Consuming
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
