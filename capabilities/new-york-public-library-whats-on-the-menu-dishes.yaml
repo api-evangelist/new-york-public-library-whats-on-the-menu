@@ -1,0 +1,218 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: NYPL What's On The Menu API — Dishes
+  description: 'NYPL What''s On The Menu API — Dishes. 4 operations. Lead operation: List dishes. Self-contained Naftiko capability
+    covering one New York Public Library Whats On The Menu business surface.'
+  tags:
+  - New York Public Library Whats On The Menu
+  - Dishes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_YORK_PUBLIC_LIBRARY_WHATS_ON_THE_MENU_API_KEY: NEW_YORK_PUBLIC_LIBRARY_WHATS_ON_THE_MENU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-york-public-library-whats-on-the-menu-dishes
+    baseUri: http://api.menus.nypl.org
+    description: NYPL What's On The Menu API — Dishes business capability. Self-contained, no shared references.
+    resources:
+    - name: dishes
+      path: /dishes
+      operations:
+      - name: get
+        method: GET
+        description: List dishes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: min_year
+          in: query
+          type: integer
+        - name: max_year
+          in: query
+          type: integer
+        - name: sort_by
+          in: query
+          type: string
+    - name: dishes-search
+      path: /dishes/search
+      operations:
+      - name: get
+        method: GET
+        description: Search dishes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        - name: sort_by
+          in: query
+          type: string
+    - name: dishes-id
+      path: /dishes/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Get dish
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    - name: dishes-id-menus
+      path: /dishes/{id}/menus
+      operations:
+      - name: get
+        method: GET
+        description: Get menus for a dish
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.NEW_YORK_PUBLIC_LIBRARY_WHATS_ON_THE_MENU_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: new-york-public-library-whats-on-the-menu-dishes-rest
+    port: 8080
+    description: REST adapter for NYPL What's On The Menu API — Dishes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/dishes
+      name: dishes
+      description: REST surface for dishes.
+      operations:
+      - method: GET
+        name: get
+        description: List dishes
+        call: new-york-public-library-whats-on-the-menu-dishes.get
+        with:
+          min_year: rest.min_year
+          max_year: rest.max_year
+          sort_by: rest.sort_by
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dishes/search
+      name: dishes-search
+      description: REST surface for dishes-search.
+      operations:
+      - method: GET
+        name: get
+        description: Search dishes
+        call: new-york-public-library-whats-on-the-menu-dishes.get
+        with:
+          query: rest.query
+          sort_by: rest.sort_by
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dishes/{id}
+      name: dishes-id
+      description: REST surface for dishes-id.
+      operations:
+      - method: GET
+        name: get
+        description: Get dish
+        call: new-york-public-library-whats-on-the-menu-dishes.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dishes/{id}/menus
+      name: dishes-id-menus
+      description: REST surface for dishes-id-menus.
+      operations:
+      - method: GET
+        name: get
+        description: Get menus for a dish
+        call: new-york-public-library-whats-on-the-menu-dishes.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-york-public-library-whats-on-the-menu-dishes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for NYPL What's On The Menu API — Dishes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-dishes
+      description: List dishes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-dishes.get
+      with:
+        min_year: tools.min_year
+        max_year: tools.max_year
+        sort_by: tools.sort_by
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-dishes
+      description: Search dishes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-dishes.get
+      with:
+        query: tools.query
+        sort_by: tools.sort_by
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-dish
+      description: Get dish
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-dishes.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-menus-dish
+      description: Get menus for a dish
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-dishes.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

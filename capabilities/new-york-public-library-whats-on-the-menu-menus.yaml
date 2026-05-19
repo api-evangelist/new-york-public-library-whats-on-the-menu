@@ -1,0 +1,264 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: NYPL What's On The Menu API — Menus
+  description: 'NYPL What''s On The Menu API — Menus. 5 operations. Lead operation: List menus. Self-contained Naftiko capability
+    covering one New York Public Library Whats On The Menu business surface.'
+  tags:
+  - New York Public Library Whats On The Menu
+  - Menus
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEW_YORK_PUBLIC_LIBRARY_WHATS_ON_THE_MENU_API_KEY: NEW_YORK_PUBLIC_LIBRARY_WHATS_ON_THE_MENU_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: new-york-public-library-whats-on-the-menu-menus
+    baseUri: http://api.menus.nypl.org
+    description: NYPL What's On The Menu API — Menus business capability. Self-contained, no shared references.
+    resources:
+    - name: menus
+      path: /menus
+      operations:
+      - name: get
+        method: GET
+        description: List menus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: min_year
+          in: query
+          type: integer
+        - name: max_year
+          in: query
+          type: integer
+        - name: sort_by
+          in: query
+          type: string
+        - name: status
+          in: query
+          type: string
+    - name: menus-search
+      path: /menus/search
+      operations:
+      - name: get
+        method: GET
+        description: Search menus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: query
+          in: query
+          type: string
+          required: true
+        - name: sort_by
+          in: query
+          type: string
+    - name: menus-id
+      path: /menus/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Get menu
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    - name: menus-id-dishes
+      path: /menus/{id}/dishes
+      operations:
+      - name: get
+        method: GET
+        description: Get menu dishes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    - name: menus-id-pages
+      path: /menus/{id}/pages
+      operations:
+      - name: get
+        method: GET
+        description: Get menu pages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: apikey
+      key: token
+      value: '{{env.NEW_YORK_PUBLIC_LIBRARY_WHATS_ON_THE_MENU_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: new-york-public-library-whats-on-the-menu-menus-rest
+    port: 8080
+    description: REST adapter for NYPL What's On The Menu API — Menus. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/menus
+      name: menus
+      description: REST surface for menus.
+      operations:
+      - method: GET
+        name: get
+        description: List menus
+        call: new-york-public-library-whats-on-the-menu-menus.get
+        with:
+          min_year: rest.min_year
+          max_year: rest.max_year
+          sort_by: rest.sort_by
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/menus/search
+      name: menus-search
+      description: REST surface for menus-search.
+      operations:
+      - method: GET
+        name: get
+        description: Search menus
+        call: new-york-public-library-whats-on-the-menu-menus.get
+        with:
+          query: rest.query
+          sort_by: rest.sort_by
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/menus/{id}
+      name: menus-id
+      description: REST surface for menus-id.
+      operations:
+      - method: GET
+        name: get
+        description: Get menu
+        call: new-york-public-library-whats-on-the-menu-menus.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/menus/{id}/dishes
+      name: menus-id-dishes
+      description: REST surface for menus-id-dishes.
+      operations:
+      - method: GET
+        name: get
+        description: Get menu dishes
+        call: new-york-public-library-whats-on-the-menu-menus.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/menus/{id}/pages
+      name: menus-id-pages
+      description: REST surface for menus-id-pages.
+      operations:
+      - method: GET
+        name: get
+        description: Get menu pages
+        call: new-york-public-library-whats-on-the-menu-menus.get
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: new-york-public-library-whats-on-the-menu-menus-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for NYPL What's On The Menu API — Menus. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-menus
+      description: List menus
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-menus.get
+      with:
+        min_year: tools.min_year
+        max_year: tools.max_year
+        sort_by: tools.sort_by
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-menus
+      description: Search menus
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-menus.get
+      with:
+        query: tools.query
+        sort_by: tools.sort_by
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-menu
+      description: Get menu
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-menus.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-menu-dishes
+      description: Get menu dishes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-menus.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-menu-pages
+      description: Get menu pages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: new-york-public-library-whats-on-the-menu-menus.get
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
