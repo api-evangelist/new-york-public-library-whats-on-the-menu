@@ -1,0 +1,151 @@
+name: NYPL What's On The Menu Vocabulary
+description: >-
+  Domain vocabulary and taxonomy for the New York Public Library "What's on the
+  Menu?" historical restaurant menu dataset. Defines the four core data entities
+  (Menu, MenuPage, MenuItem, Dish), the controlled values used in the data, and
+  the semantic alignments to schema.org and Dublin Core terms used in the
+  accompanying JSON-LD context.
+source:
+  dataset: https://s3.amazonaws.com/menusdata.nypl.org/gzips/
+  dataDictionary: http://curatingmenus.org/data_dictionary/
+  legacyApiDocs: http://nypl.github.io/menus-api/
+  projectSupport: https://www.nypl.org/research/support/whats-on-the-menu
+
+entities:
+  - term: Menu
+    definition: >-
+      A single physical historical menu object that was digitized and
+      crowdsource-transcribed. The root entity of the dataset hierarchy.
+    schemaOrg: schema:Menu
+    fields:
+      - id
+      - name
+      - sponsor
+      - event
+      - venue
+      - place
+      - physical_description
+      - occasion
+      - notes
+      - call_number
+      - keywords
+      - language
+      - date
+      - location
+      - location_type
+      - currency
+      - currency_symbol
+      - status
+      - page_count
+      - dish_count
+  - term: MenuPage
+    definition: >-
+      A single digitized page image of a Menu. The surface on which MenuItem
+      transcriptions are positioned via normalized coordinates.
+    schemaOrg: schema:CreativeWork
+    parent: Menu
+    fields:
+      - id
+      - menu_id
+      - page_number
+      - image_id
+      - full_height
+      - full_width
+      - uuid
+  - term: MenuItem
+    definition: >-
+      A single transcribed line item placing a Dish on a MenuPage, with the
+      price and the normalized (x, y) location of the transcription.
+    schemaOrg: schema:MenuItem
+    parent: MenuPage
+    references: Dish
+    fields:
+      - id
+      - menu_page_id
+      - dish_id
+      - price
+      - high_price
+      - xpos
+      - ypos
+      - created_at
+      - updated_at
+  - term: Dish
+    definition: >-
+      A normalized, deduplicated dish aggregating every MenuItem occurrence of
+      the same dish name, with appearance counts, year range, and price range.
+    schemaOrg: schema:MenuItem
+    fields:
+      - id
+      - name
+      - description
+      - menus_appeared
+      - times_appeared
+      - first_appeared
+      - last_appeared
+      - lowest_price
+      - highest_price
+
+relationships:
+  - from: MenuPage.menu_id
+    to: Menu.id
+    cardinality: many-to-one
+  - from: MenuItem.menu_page_id
+    to: MenuPage.id
+    cardinality: many-to-one
+  - from: MenuItem.dish_id
+    to: Dish.id
+    cardinality: many-to-one
+
+controlledValues:
+  transcriptionStatus:
+    description: Crowdsourcing transcription state of a Menu.
+    values:
+      - complete
+      - under review
+      - to transcribe
+  menuSortBy:
+    description: Sort options historically supported by the legacy /menus endpoint.
+    values:
+      - date
+      - name
+      - dish_count
+  dishSortBy:
+    description: >-
+      Sort options historically supported by the legacy /dishes endpoint.
+      "popularity" sorts by frequency of appearance; "obscurity" is the inverse.
+    values:
+      - name
+      - date
+      - popularity
+      - obscurity
+  searchSortBy:
+    description: Sort options for the legacy search endpoints.
+    values:
+      - relevance
+      - date
+      - name
+      - popularity
+      - obscurity
+
+namespaces:
+  schema: https://schema.org/
+  dct: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
+tags:
+  - Libraries
+  - Menus
+  - Restaurants
+  - History
+  - Open Data
+  - Food
+  - Datasets
+  - Cultural Heritage
+
+notes: >-
+  The live What's on the Menu site and its companion API (api.menus.nypl.org)
+  were retired in January 2025. The dataset itself remains available as a gzip
+  archive of four CSV tables on Amazon S3. The OpenAPI definition in this repo
+  documents the historical HTTP contract for reference; the durable interface is
+  now the bulk data export described by this vocabulary and the accompanying
+  JSON Schema and JSON Structure artifacts.

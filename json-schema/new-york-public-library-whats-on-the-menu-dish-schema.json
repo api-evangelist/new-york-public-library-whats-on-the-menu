@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-dish-schema.json",
+  "title": "Dish",
+  "description": "A normalized, deduplicated dish in the NYPL 'What's on the Menu?' dataset. A Dish aggregates every transcribed MenuItem that shares the same dish name, with summary statistics about how often and over what period and price range it appeared. Corresponds to a row in Dish.csv.",
+  "type": "object",
+  "required": ["id", "name"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Unique numeric identifier for the dish. Primary key referenced by MenuItem.dish_id."
+    },
+    "name": {
+      "type": "string",
+      "description": "Normalized name of the dish as transcribed (e.g. 'Coffee', 'Consomme printaniere royal')."
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Optional longer description of the dish (historically sparsely populated)."
+    },
+    "menus_appeared": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Count of distinct menus this dish appeared on."
+    },
+    "times_appeared": {
+      "type": ["integer", "null"],
+      "description": "Total number of times the dish appeared across all menus (count of MenuItem rows referencing it)."
+    },
+    "first_appeared": {
+      "type": ["integer", "null"],
+      "description": "Earliest year this dish was recorded on a menu. A value of 0 indicates unknown.",
+      "examples": [1851]
+    },
+    "last_appeared": {
+      "type": ["integer", "null"],
+      "description": "Latest year this dish was recorded on a menu. A value of 0 indicates unknown.",
+      "examples": [2012]
+    },
+    "lowest_price": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Lowest price recorded for this dish across all menus, in the originating menu currency. Decimal with up to 3 places."
+    },
+    "highest_price": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Highest price recorded for this dish across all menus. Decimal with up to 3 places."
+    }
+  }
+}

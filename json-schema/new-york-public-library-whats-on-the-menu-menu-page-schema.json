@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-page-schema.json",
+  "title": "MenuPage",
+  "description": "A single digitized page of a Menu in the NYPL 'What's on the Menu?' dataset. Each MenuPage is a scanned image produced during digitization and is the surface on which MenuItem transcriptions are positioned. Corresponds to a row in MenuPage.csv.",
+  "type": "object",
+  "required": ["id", "menu_id"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Unique numeric identifier for the menu page. Primary key referenced by MenuItem.menu_page_id."
+    },
+    "menu_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Foreign key to the parent Menu.id this page belongs to."
+    },
+    "page_number": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Ordinal position of this page within the menu."
+    },
+    "image_id": {
+      "type": ["string", "null"],
+      "description": "NYPL Digital Collections image identifier for the scanned page image."
+    },
+    "full_height": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Full pixel height of the digitized page image, used to interpret MenuItem ypos coordinates."
+    },
+    "full_width": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Full pixel width of the digitized page image, used to interpret MenuItem xpos coordinates."
+    },
+    "uuid": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "Stable UUID for the digitized page image asset."
+    }
+  }
+}

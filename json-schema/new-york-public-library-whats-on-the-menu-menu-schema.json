@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-schema.json",
+  "title": "Menu",
+  "description": "A single historical menu in the New York Public Library 'What's on the Menu?' dataset. Each Menu represents one physical menu object (from a restaurant, hotel, steamship, banquet, etc.) that was digitized and crowdsourced-transcribed. Corresponds to a row in Menu.csv.",
+  "type": "object",
+  "required": ["id"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Unique numeric identifier for the menu. Primary key referenced by MenuPage.menu_id."
+    },
+    "name": {
+      "type": ["string", "null"],
+      "description": "Name or title of the menu, often the name of the restaurant, establishment, or event hosting it."
+    },
+    "sponsor": {
+      "type": ["string", "null"],
+      "description": "The institution, restaurant, hotel, society, or organization that sponsored or hosted the menu."
+    },
+    "event": {
+      "type": ["string", "null"],
+      "description": "The occasion or event the menu was created for (e.g. Dinner, Breakfast, Banquet, Anniversary)."
+    },
+    "venue": {
+      "type": ["string", "null"],
+      "description": "The type of venue or setting the menu was served in (e.g. Commercial, Social, Professional)."
+    },
+    "place": {
+      "type": ["string", "null"],
+      "description": "Free-text place name where the menu was used, as transcribed."
+    },
+    "physical_description": {
+      "type": ["string", "null"],
+      "description": "Description of the physical menu object: dimensions, material, folding, illustration, and condition."
+    },
+    "occasion": {
+      "type": ["string", "null"],
+      "description": "Specific occasion associated with the menu where distinct from the event."
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Curatorial or transcriber notes about the menu."
+    },
+    "call_number": {
+      "type": ["string", "null"],
+      "description": "NYPL catalog call number for the physical menu in the library's collection."
+    },
+    "keywords": {
+      "type": ["string", "null"],
+      "description": "Keyword tags assigned to the menu (historically unused in much of the dataset)."
+    },
+    "language": {
+      "type": ["string", "null"],
+      "description": "Language(s) the menu is written in."
+    },
+    "date": {
+      "type": ["string", "null"],
+      "description": "Date the menu was issued or used. Stored as a free-text/ISO date string; precision varies (year only to full date).",
+      "examples": ["1900-04-15", "1900"]
+    },
+    "location": {
+      "type": ["string", "null"],
+      "description": "Establishment or location name where the menu was served."
+    },
+    "location_type": {
+      "type": ["string", "null"],
+      "description": "Classification of the location (historically sparsely populated)."
+    },
+    "currency": {
+      "type": ["string", "null"],
+      "description": "Currency in which menu item prices are denominated (e.g. Dollars, Francs)."
+    },
+    "currency_symbol": {
+      "type": ["string", "null"],
+      "description": "Symbol for the currency used on the menu (e.g. $)."
+    },
+    "status": {
+      "type": ["string", "null"],
+      "enum": ["complete", "under review", "under_review", "to transcribe", "to_transcribe", null],
+      "description": "Crowdsourcing transcription status of the menu."
+    },
+    "page_count": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Number of digitized pages (MenuPage records) belonging to this menu."
+    },
+    "dish_count": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Number of distinct dishes (via MenuItem records) appearing on this menu."
+    }
+  }
+}

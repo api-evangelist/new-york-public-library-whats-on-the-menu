@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-structure/new-york-public-library-whats-on-the-menu-dataset-structure.json",
+  "name": "NyplWhatsOnTheMenuDataset",
+  "description": "Structural layout of the New York Public Library 'What's on the Menu?' open dataset. The dataset is distributed as four related CSV tables (Menu, MenuPage, MenuItem, Dish) packaged in a gzip archive on Amazon S3. This JSON Structure documents the four entity types, their fields, and the foreign-key relationships that join them.",
+  "type": "object",
+  "properties": {
+    "menus": {
+      "type": "array",
+      "description": "Menu.csv — one row per digitized physical menu object.",
+      "items": { "type": { "$ref": "#/definitions/Menu" } }
+    },
+    "menuPages": {
+      "type": "array",
+      "description": "MenuPage.csv — one row per digitized page; child of Menu.",
+      "items": { "type": { "$ref": "#/definitions/MenuPage" } }
+    },
+    "menuItems": {
+      "type": "array",
+      "description": "MenuItem.csv — one row per transcribed dish-on-page line item; links MenuPage and Dish.",
+      "items": { "type": { "$ref": "#/definitions/MenuItem" } }
+    },
+    "dishes": {
+      "type": "array",
+      "description": "Dish.csv — one row per normalized/deduplicated dish with appearance and price statistics.",
+      "items": { "type": { "$ref": "#/definitions/Dish" } }
+    }
+  },
+  "definitions": {
+    "Menu": {
+      "type": "object",
+      "description": "A single historical menu. Root of the hierarchy.",
+      "properties": {
+        "id": { "type": "uint32", "description": "Primary key." },
+        "name": { "type": "string" },
+        "sponsor": { "type": "string" },
+        "event": { "type": "string" },
+        "venue": { "type": "string" },
+        "place": { "type": "string" },
+        "physical_description": { "type": "string" },
+        "occasion": { "type": "string" },
+        "notes": { "type": "string" },
+        "call_number": { "type": "string", "description": "NYPL catalog call number." },
+        "keywords": { "type": "string" },
+        "language": { "type": "string" },
+        "date": { "type": "string", "description": "Issue/use date; precision varies." },
+        "location": { "type": "string" },
+        "location_type": { "type": "string" },
+        "currency": { "type": "string" },
+        "currency_symbol": { "type": "string" },
+        "status": { "type": "string", "description": "Transcription status: complete, under review, to transcribe." },
+        "page_count": { "type": "uint16" },
+        "dish_count": { "type": "uint16" }
+      },
+      "required": ["id"]
+    },
+    "MenuPage": {
+      "type": "object",
+      "description": "A digitized page of a Menu.",
+      "properties": {
+        "id": { "type": "uint32", "description": "Primary key." },
+        "menu_id": { "type": "uint32", "description": "Foreign key -> Menu.id." },
+        "page_number": { "type": "uint16" },
+        "image_id": { "type": "string", "description": "NYPL Digital Collections image id." },
+        "full_height": { "type": "uint16" },
+        "full_width": { "type": "uint16" },
+        "uuid": { "type": "uuid" }
+      },
+      "required": ["id", "menu_id"]
+    },
+    "MenuItem": {
+      "type": "object",
+      "description": "A transcribed line item positioning a Dish on a MenuPage.",
+      "properties": {
+        "id": { "type": "uint32", "description": "Primary key." },
+        "menu_page_id": { "type": "uint32", "description": "Foreign key -> MenuPage.id." },
+        "dish_id": { "type": "uint32", "description": "Foreign key -> Dish.id." },
+        "price": { "type": "decimal", "precision": 12, "scale": 3 },
+        "high_price": { "type": "decimal", "precision": 12, "scale": 3 },
+        "xpos": { "type": "double", "description": "Normalized x position (0..1) on the page image." },
+        "ypos": { "type": "double", "description": "Normalized y position (0..1) on the page image." },
+        "created_at": { "type": "datetime" },
+        "updated_at": { "type": "datetime" }
+      },
+      "required": ["id", "menu_page_id"]
+    },
+    "Dish": {
+      "type": "object",
+      "description": "A normalized dish aggregating all MenuItem occurrences of the same name.",
+      "properties": {
+        "id": { "type": "uint32", "description": "Primary key." },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "menus_appeared": { "type": "uint32" },
+        "times_appeared": { "type": "int32" },
+        "first_appeared": { "type": "uint16", "description": "Earliest appearance year; 0 = unknown." },
+        "last_appeared": { "type": "uint16", "description": "Latest appearance year; 0 = unknown." },
+        "lowest_price": { "type": "decimal", "precision": 12, "scale": 3 },
+        "highest_price": { "type": "decimal", "precision": 12, "scale": 3 }
+      },
+      "required": ["id", "name"]
+    }
+  },
+  "x-relationships": [
+    { "from": "MenuPage.menu_id", "to": "Menu.id", "cardinality": "many-to-one" },
+    { "from": "MenuItem.menu_page_id", "to": "MenuPage.id", "cardinality": "many-to-one" },
+    { "from": "MenuItem.dish_id", "to": "Dish.id", "cardinality": "many-to-one" }
+  ]
+}

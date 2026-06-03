@@ -1,0 +1,62 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "menu": "https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/vocabulary/new-york-public-library-whats-on-the-menu-vocabulary.yml#",
+
+    "Dataset": "schema:Dataset",
+    "Menu": "schema:Menu",
+    "MenuPage": "schema:CreativeWork",
+    "MenuItem": "schema:MenuItem",
+    "Dish": "schema:MenuItem",
+
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "description": "schema:description",
+
+    "sponsor": "schema:sponsor",
+    "event": "menu:event",
+    "venue": "menu:venue",
+    "place": "schema:contentLocation",
+    "physical_description": "dct:format",
+    "occasion": "menu:occasion",
+    "notes": "schema:comment",
+    "call_number": "dct:identifier",
+    "keywords": "schema:keywords",
+    "language": "dct:language",
+    "date": { "@id": "dct:date", "@type": "xsd:date" },
+    "location": "schema:contentLocation",
+    "location_type": "menu:locationType",
+    "currency": "schema:priceCurrency",
+    "currency_symbol": "menu:currencySymbol",
+    "status": "menu:transcriptionStatus",
+    "page_count": { "@id": "menu:pageCount", "@type": "xsd:integer" },
+    "dish_count": { "@id": "menu:dishCount", "@type": "xsd:integer" },
+
+    "menu_id": { "@id": "menu:menu", "@type": "@id" },
+    "page_number": { "@id": "menu:pageNumber", "@type": "xsd:integer" },
+    "image_id": "menu:imageId",
+    "full_height": { "@id": "schema:height", "@type": "xsd:integer" },
+    "full_width": { "@id": "schema:width", "@type": "xsd:integer" },
+    "uuid": "dct:identifier",
+
+    "menu_page_id": { "@id": "menu:menuPage", "@type": "@id" },
+    "dish_id": { "@id": "menu:dish", "@type": "@id" },
+    "price": { "@id": "schema:price", "@type": "xsd:decimal" },
+    "high_price": { "@id": "menu:highPrice", "@type": "xsd:decimal" },
+    "xpos": { "@id": "menu:xpos", "@type": "xsd:double" },
+    "ypos": { "@id": "menu:ypos", "@type": "xsd:double" },
+    "created_at": { "@id": "dct:created", "@type": "xsd:dateTime" },
+    "updated_at": { "@id": "dct:modified", "@type": "xsd:dateTime" },
+
+    "menus_appeared": { "@id": "menu:menusAppeared", "@type": "xsd:integer" },
+    "times_appeared": { "@id": "menu:timesAppeared", "@type": "xsd:integer" },
+    "first_appeared": { "@id": "menu:firstAppeared", "@type": "xsd:gYear" },
+    "last_appeared": { "@id": "menu:lastAppeared", "@type": "xsd:gYear" },
+    "lowest_price": { "@id": "menu:lowestPrice", "@type": "xsd:decimal" },
+    "highest_price": { "@id": "menu:highestPrice", "@type": "xsd:decimal" }
+  }
+}

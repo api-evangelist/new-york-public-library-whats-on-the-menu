@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-item-schema.json",
+  "title": "MenuItem",
+  "description": "A single transcribed line item positioned on a MenuPage in the NYPL 'What's on the Menu?' dataset. A MenuItem links a Dish to a specific MenuPage, capturing the price and the (x, y) location of the transcription on the page image. Corresponds to a row in MenuItem.csv.",
+  "type": "object",
+  "required": ["id", "menu_page_id", "dish_id"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Unique numeric identifier for the menu item (transcription instance)."
+    },
+    "menu_page_id": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Foreign key to the MenuPage.id on which this item was transcribed."
+    },
+    "dish_id": {
+      "type": ["integer", "null"],
+      "minimum": 1,
+      "description": "Foreign key to the Dish.id this item names. May be null when a transcription has not yet been linked to a normalized dish."
+    },
+    "price": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Transcribed price of the dish as it appeared on the menu, in the menu's currency. Decimal with up to 3 places."
+    },
+    "high_price": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Upper bound of a price range when the menu listed a range rather than a single price."
+    },
+    "xpos": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Normalized horizontal position (0..1) of the transcription on the page image, relative to MenuPage.full_width."
+    },
+    "ypos": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Normalized vertical position (0..1) of the transcription on the page image, relative to MenuPage.full_height."
+    },
+    "created_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the transcription record was created."
+    },
+    "updated_at": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the transcription record was last updated."
+    }
+  }
+}
