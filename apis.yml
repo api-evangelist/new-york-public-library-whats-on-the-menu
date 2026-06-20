@@ -8,7 +8,7 @@ description: The New York Public Library's What's On The Menu project is a crowd
 kind: contract
 position: Consuming
 access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Libraries
   - Menus
