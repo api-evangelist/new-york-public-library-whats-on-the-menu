@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/new-york-public-library-whats-on-the-menu-openapi-original.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: apiToken
+  type: apiKey
+  in: query
+  parameter: token
+  description: 26-character API token. Request access by emailing menus@nypl.org with subject
+    "API ACCESS".
+  sources:
+  - openapi/new-york-public-library-whats-on-the-menu-openapi-original.yaml

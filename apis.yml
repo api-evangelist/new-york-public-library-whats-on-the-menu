@@ -67,6 +67,10 @@ apis:
     - FN: NYPL Menus Project
       email: menus@nypl.org
 common:
+  - type: DomainSecurity
+    url: security/new-york-public-library-whats-on-the-menu-domain-security.yml
+  - type: Authentication
+    url: authentication/new-york-public-library-whats-on-the-menu-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/NYPL
   - type: Website
