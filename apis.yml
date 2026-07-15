@@ -67,6 +67,8 @@ apis:
     - FN: NYPL Menus Project
       email: menus@nypl.org
 common:
+  - type: AgenticAccess
+    url: agentic-access/new-york-public-library-whats-on-the-menu-agentic-access.yml
   - type: DomainSecurity
     url: security/new-york-public-library-whats-on-the-menu-domain-security.yml
   - type: Authentication
