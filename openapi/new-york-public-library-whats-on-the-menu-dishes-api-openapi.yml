@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: NYPL What's On The Menu Dishes API
+  description: The New York Public Library's What's On The Menu API provides programmatic access to over 17,000 historical restaurant menus from the New York City area dating back to the 1850s. Explore menus, pages, and dishes including prices, names, dates, and full-text search across the dataset.
+  version: '1.0'
+  contact:
+    name: NYPL Menus API
+    email: menus@nypl.org
+    url: http://nypl.github.io/menus-api/
+servers:
+- url: http://api.menus.nypl.org
+  description: Production
+security:
+- apiToken: []
+tags:
+- name: Dishes
+  description: Dish records appearing across menus.
+paths:
+  /dishes:
+    get:
+      tags:
+      - Dishes
+      summary: List dishes
+      description: List dishes with optional filtering. 100 dishes per page by default.
+      parameters:
+      - name: min_year
+        in: query
+        schema:
+          type: integer
+      - name: max_year
+        in: query
+        schema:
+          type: integer
+      - name: sort_by
+        in: query
+        schema:
+          type: string
+          enum:
+          - name
+          - date
+          - popularity
+          - obscurity
+      responses:
+        '200':
+          description: Collection of dishes.
+  /dishes/{id}:
+    get:
+      tags:
+      - Dishes
+      summary: Get dish
+      description: Retrieve a specific dish by ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Single dish.
+  /dishes/{id}/menus:
+    get:
+      tags:
+      - Dishes
+      summary: Get menus for a dish
+      description: List menus that contain the given dish.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Menus containing the dish.
+  /dishes/search:
+    get:
+      tags:
+      - Dishes
+      summary: Search dishes
+      description: Full-text search across dishes.
+      parameters:
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: sort_by
+        in: query
+        schema:
+          type: string
+          enum:
+          - relevance
+          - date
+          - name
+          - popularity
+          - obscurity
+      responses:
+        '200':
+          description: Search results.
+components:
+  securitySchemes:
+    apiToken:
+      type: apiKey
+      in: query
+      name: token
+      description: 26-character API token. Request access by emailing menus@nypl.org with subject "API ACCESS".
