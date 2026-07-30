@@ -6,9 +6,22 @@ description: The New York Public Library's What's On The Menu project is a crowd
   HTTP API formerly provided programmatic access to menus, pages, and dishes; the live site and api.menus.nypl.org were retired
   in January 2025, but the crowdsourced dataset remains available as a gzip archive on Amazon S3 alongside a data dictionary.
 kind: contract
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consuming
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/new-york-public-library-whats-on-the-menu.png
 tags:
   - Libraries
   - Menus
@@ -23,49 +36,86 @@ created: '2024-11-14'
 modified: '2026-06-03'
 specificationVersion: '0.19'
 apis:
-  - aid: new-york-public-library-whats-on-the-menu:new-york-public-library-whats-on-the-menu
-    name: NYPL What's On The Menu API
-    description: The NYPL What's On The Menu API exposed the full Menus dataset for programmatic exploration. Endpoints covered
-      menus and their pages, dishes, search across both, and filtering by year, status, and other properties. Responses were
-      JSON or XML, with token-based authentication, daily rate limits, and pagination headers. The live API at api.menus.nypl.org
-      was retired in January 2025; the OpenAPI definition here documents the historical contract, and the four-table CSV dataset
-      (Menu, MenuPage, MenuItem, Dish) remains downloadable from the Amazon S3 archive as the durable data interface.
-    humanURL: http://nypl.github.io/menus-api/
-    baseURL: http://api.menus.nypl.org
-    tags:
-    - Libraries
-    - Menus
-    - Restaurants
-    - History
-    - Open Data
-    properties:
-    - type: Documentation
-      url: http://nypl.github.io/menus-api/
-    - type: OpenAPI
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/openapi/new-york-public-library-whats-on-the-menu-openapi-original.yaml
-    - type: Project Site
-      url: https://www.nypl.org/research/support/whats-on-the-menu
-    - type: DataAPI
-      url: https://s3.amazonaws.com/menusdata.nypl.org/gzips/
-    - type: DataDictionary
-      url: http://curatingmenus.org/data_dictionary/
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-schema.json
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-page-schema.json
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-item-schema.json
-    - type: JSONSchema
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-dish-schema.json
-    - type: JSONStructure
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-structure/new-york-public-library-whats-on-the-menu-dataset-structure.json
-    - type: JSONLD
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-ld/new-york-public-library-whats-on-the-menu-context.jsonld
-    - type: Vocabulary
-      url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/vocabulary/new-york-public-library-whats-on-the-menu-vocabulary.yml
-    contact:
-    - FN: NYPL Menus Project
-      email: menus@nypl.org
+- aid: >-
+    new-york-public-library-whats-on-the-menu:new-york-public-library-whats-on-the-menu-dishes-api
+  name: New York Public Library What's On The Menu Dishes API
+  description: Dish records appearing across menus.
+  humanURL: http://nypl.github.io/menus-api/
+  baseURL: http://api.menus.nypl.org
+  tags:
+  - Dishes
+  properties:
+  - type: OpenAPI
+    url: openapi/new-york-public-library-whats-on-the-menu-dishes-api-openapi.yml
+  - type: Documentation
+    url: http://nypl.github.io/menus-api/
+  - type: Project Site
+    url: https://www.nypl.org/research/support/whats-on-the-menu
+  - type: DataAPI
+    url: https://s3.amazonaws.com/menusdata.nypl.org/gzips/
+  - type: DataDictionary
+    url: http://curatingmenus.org/data_dictionary/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-page-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-item-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-dish-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-structure/new-york-public-library-whats-on-the-menu-dataset-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-ld/new-york-public-library-whats-on-the-menu-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/vocabulary/new-york-public-library-whats-on-the-menu-vocabulary.yml
+- aid: >-
+    new-york-public-library-whats-on-the-menu:new-york-public-library-whats-on-the-menu-menus-api
+  name: New York Public Library What's On The Menu Menus API
+  description: Historical menu records and pages.
+  humanURL: http://nypl.github.io/menus-api/
+  baseURL: http://api.menus.nypl.org
+  tags:
+  - Menus
+  properties:
+  - type: OpenAPI
+    url: openapi/new-york-public-library-whats-on-the-menu-menus-api-openapi.yml
+  - type: Documentation
+    url: http://nypl.github.io/menus-api/
+  - type: Project Site
+    url: https://www.nypl.org/research/support/whats-on-the-menu
+  - type: DataAPI
+    url: https://s3.amazonaws.com/menusdata.nypl.org/gzips/
+  - type: DataDictionary
+    url: http://curatingmenus.org/data_dictionary/
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-page-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-menu-item-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-schema/new-york-public-library-whats-on-the-menu-dish-schema.json
+  - type: JSONStructure
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-structure/new-york-public-library-whats-on-the-menu-dataset-structure.json
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/json-ld/new-york-public-library-whats-on-the-menu-context.jsonld
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/vocabulary/new-york-public-library-whats-on-the-menu-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/new-york-public-library-whats-on-the-menu-agentic-access.yml
