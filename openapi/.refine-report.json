@@ -1,0 +1,16 @@
+{
+  "provider": "new-york-public-library-whats-on-the-menu",
+  "sources": [
+    "new-york-public-library-whats-on-the-menu-dishes-api-openapi.yml",
+    "new-york-public-library-whats-on-the-menu-menus-api-openapi.yml"
+  ],
+  "outputs": [
+    "new-york-public-library-whats-on-the-menu-dishes-api-openapi.yml",
+    "new-york-public-library-whats-on-the-menu-menus-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
