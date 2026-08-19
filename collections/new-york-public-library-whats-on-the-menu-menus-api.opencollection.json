@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NYPL What's On The Menu Dishes Menus API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "token",
+      "value": "{{token}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Menus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.menus.nypl.org/menus",
+            "params": [
+              {
+                "name": "min_year",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_year",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List menus with optional filtering. 50 menus per page by default."
+        },
+        {
+          "info": {
+            "name": "Get menu",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.menus.nypl.org/menus/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific menu by ID."
+        },
+        {
+          "info": {
+            "name": "Get menu pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.menus.nypl.org/menus/:id/pages",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List pages associated with the given menu."
+        },
+        {
+          "info": {
+            "name": "Get menu dishes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.menus.nypl.org/menus/:id/dishes",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List dishes that appear on the given menu."
+        },
+        {
+          "info": {
+            "name": "Search menus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://api.menus.nypl.org/menus/search",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Full-text search across menus."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

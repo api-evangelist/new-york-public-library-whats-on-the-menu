@@ -1,0 +1,481 @@
+{
+  "item": [
+    {
+      "id": "dac22291-9fd6-49cc-9ba2-5661de71669d",
+      "name": "Menus",
+      "description": {
+        "content": "Historical menu records and pages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0218a885-d866-4853-985b-fbd87c87317a",
+          "name": "List menus",
+          "request": {
+            "name": "List menus",
+            "description": {
+              "content": "List menus with optional filtering. 50 menus per page by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "min_year",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_year",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf01c83c-db69-4586-b6cb-c73b276f750b",
+              "name": "Collection of menus.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "min_year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2055700e-0a52-4882-b423-cc038bad3601",
+          "name": "Get menu",
+          "request": {
+            "name": "Get menu",
+            "description": {
+              "content": "Retrieve a specific menu by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menus",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "057fa75b-9382-4aac-bad5-4f38faf2811a",
+              "name": "Single menu.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menus",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53d98589-1570-44ac-8f49-484130c4ea3a",
+          "name": "Get menu pages",
+          "request": {
+            "name": "Get menu pages",
+            "description": {
+              "content": "List pages associated with the given menu.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menus",
+                ":id",
+                "pages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92b109d3-0218-4cfe-9f0f-0180d57298d3",
+              "name": "Pages of the menu.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menus",
+                    ":id",
+                    "pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5d2f92b-7df2-4435-9d4c-196f8a4ec71c",
+          "name": "Get menu dishes",
+          "request": {
+            "name": "Get menu dishes",
+            "description": {
+              "content": "List dishes that appear on the given menu.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menus",
+                ":id",
+                "dishes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0c1c87f-eea8-4818-ab26-62c16b6434ce",
+              "name": "Dishes on the menu.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menus",
+                    ":id",
+                    "dishes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c49f388-0c1d-4b58-b449-2d7e4642de6d",
+          "name": "Search menus",
+          "request": {
+            "name": "Search menus",
+            "description": {
+              "content": "Full-text search across menus.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "menus",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e2753c0-babc-4fbe-aece-9029a11d878a",
+              "name": "Search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "menus",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://api.menus.nypl.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8b2ed3b0-8359-4289-afe7-3daf3a75a589",
+    "name": "NYPL What's On The Menu Dishes Menus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New York Public Library's What's On The Menu API provides programmatic access to over 17,000 historical restaurant menus from the New York City area dating back to the 1850s. Explore menus, pages, and dishes including prices, names, dates, and full-text search across the dataset.\n\nContact Support:\n Name: NYPL Menus API\n Email: menus@nypl.org",
+      "type": "text/plain"
+    }
+  }
+}

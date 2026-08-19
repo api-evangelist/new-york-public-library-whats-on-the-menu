@@ -1,0 +1,389 @@
+{
+  "item": [
+    {
+      "id": "f29319ef-bd70-4fc4-8a94-f3fcac917473",
+      "name": "Dishes",
+      "description": {
+        "content": "Dish records appearing across menus.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d854b6c-7875-4eb4-91b5-2dc9d26b46b0",
+          "name": "List dishes",
+          "request": {
+            "name": "List dishes",
+            "description": {
+              "content": "List dishes with optional filtering. 100 dishes per page by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dishes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "min_year",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_year",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9cc967f-d49b-4907-9f5d-6c839b720767",
+              "name": "Collection of dishes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dishes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "min_year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_year",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "756bd584-aaee-411d-957d-14a6eb30d19a",
+          "name": "Get dish",
+          "request": {
+            "name": "Get dish",
+            "description": {
+              "content": "Retrieve a specific dish by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dishes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "777f5759-d126-4247-8d7a-b3a26a1b6acc",
+              "name": "Single dish.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dishes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "828a8b07-b9a0-456a-b74b-693d6540fc1e",
+          "name": "Get menus for a dish",
+          "request": {
+            "name": "Get menus for a dish",
+            "description": {
+              "content": "List menus that contain the given dish.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dishes",
+                ":id",
+                "menus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7aa456c-f07b-464c-8110-4852e59adbbb",
+              "name": "Menus containing the dish.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dishes",
+                    ":id",
+                    "menus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2134a4f-0ed8-4b30-8b19-92c5c19841ab",
+          "name": "Search dishes",
+          "request": {
+            "name": "Search dishes",
+            "description": {
+              "content": "Full-text search across dishes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dishes",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5b5d2e51-c9f7-45bc-8f99-e8bd496add60",
+              "name": "Search results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dishes",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://api.menus.nypl.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "token"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e33695d5-515d-4ccf-aa92-0033b2e7b0d2",
+    "name": "NYPL What's On The Menu Dishes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The New York Public Library's What's On The Menu API provides programmatic access to over 17,000 historical restaurant menus from the New York City area dating back to the 1850s. Explore menus, pages, and dishes including prices, names, dates, and full-text search across the dataset.\n\nContact Support:\n Name: NYPL Menus API\n Email: menus@nypl.org",
+      "type": "text/plain"
+    }
+  }
+}
