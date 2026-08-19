@@ -34,7 +34,7 @@ tags:
 url: https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/apis.yml
 created: '2024-11-14'
 modified: '2026-06-03'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: >-
     new-york-public-library-whats-on-the-menu:new-york-public-library-whats-on-the-menu-dishes-api
