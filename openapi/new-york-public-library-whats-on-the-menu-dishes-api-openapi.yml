@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: NYPL What's On The Menu Dishes API
   description: The New York Public Library's What's On The Menu API provides programmatic access to over 17,000 historical restaurant menus from the New York City area dating back to the 1850s. Explore menus, pages, and dishes including prices, names, dates, and full-text search across the dataset.
@@ -43,6 +43,8 @@ paths:
       responses:
         '200':
           description: Collection of dishes.
+      operationId: getDishes
+      x-operation-id-source: derived
   /dishes/{id}:
     get:
       tags:
@@ -58,6 +60,8 @@ paths:
       responses:
         '200':
           description: Single dish.
+      operationId: getDishesById
+      x-operation-id-source: derived
   /dishes/{id}/menus:
     get:
       tags:
@@ -73,6 +77,8 @@ paths:
       responses:
         '200':
           description: Menus containing the dish.
+      operationId: getDishesByIdMenus
+      x-operation-id-source: derived
   /dishes/search:
     get:
       tags:
@@ -98,6 +104,8 @@ paths:
       responses:
         '200':
           description: Search results.
+      operationId: getDishesSearch
+      x-operation-id-source: derived
 components:
   securitySchemes:
     apiToken:

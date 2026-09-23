@@ -1,8 +1,7 @@
 {
   "provider": "new-york-public-library-whats-on-the-menu",
   "sources": [
-    "new-york-public-library-whats-on-the-menu-dishes-api-openapi.yml",
-    "new-york-public-library-whats-on-the-menu-menus-api-openapi.yml"
+    "_original/new-york-public-library-whats-on-the-menu-openapi-original.yaml"
   ],
   "outputs": [
     "new-york-public-library-whats-on-the-menu-dishes-api-openapi.yml",
@@ -11,6 +10,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "new-york-public-library-whats-on-the-menu-openapi-original.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "new-york-public-library-whats-on-the-menu-dishes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "new-york-public-library-whats-on-the-menu-menus-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
