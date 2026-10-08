@@ -138,6 +138,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/vocabulary/new-york-public-library-whats-on-the-menu-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/new-york-public-library-whats-on-the-menu-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/new-york-public-library-whats-on-the-menu-rate-limits.yml
+  - type: FinOps
+    url: finops/new-york-public-library-whats-on-the-menu-finops.yml
   - type: AgenticAccess
     url: agentic-access/new-york-public-library-whats-on-the-menu-agentic-access.yml
   - type: DomainSecurity
