@@ -1,4 +1,4 @@
-# New York Public Library What's On The Menu (new-york-public-library-whats-on-the-menu)
+# New York Public Library What's On The Menu
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,92 +66,158 @@
 
 The New York Public Library's What's On The Menu project is a crowdsourced digital collection of over 17,000 historical restaurant menus from the New York City area dating back to the 1850s, with more than 1.3 million transcribed dishes. The dataset is modeled as four related entities (Menu, MenuPage, MenuItem, Dish) and distributed as bulk CSV downloads. A companion HTTP API formerly provided programmatic access to menus, pages, and dishes; the live site and api.menus.nypl.org were retired in January 2025, but the crowdsourced dataset remains available as a gzip archive on Amazon S3 alongside a data dictionary.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/apis.yml)
+**Areas:** Library · Menus · Restaurant · History · Open Data · Food · Datasets · Cultural Heritage
 
-## Scope
+## New York Public Library What's On The Menu on APIs.io
 
-- **Type:** Contract
-- **Position:** Consuming
-- **Access:** 3rd-Party
+Everything profiled for New York Public Library What's On The Menu is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/new-york-public-library-whats-on-the-menu/](https://apis.io/providers/new-york-public-library-whats-on-the-menu/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- Libraries
-- Menus
-- Restaurants
-- History
-- Open Data
-- Food
-- Datasets
-- Cultural Heritage
+- [New York Public Library What's On The Menu Dishes API](https://apis.io/apis/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-dishes-api/) — Dish records appearing across menus.
+- [New York Public Library What's On The Menu Menus API](https://apis.io/apis/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menus-api/) — Historical menu records and pages.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-11-14
-- **Modified:** 2026-06-03
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Data Model
+#### Agentic access (1)
 
-The dataset is four related tables. Foreign keys join them into a Menu → MenuPage → MenuItem → Dish hierarchy.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-| Entity | Description | Joins to |
-|---|---|---|
-| **Menu** | One digitized physical menu object (restaurant, hotel, banquet, steamship, etc.) | root |
-| **MenuPage** | One scanned page of a menu | `menu_id` → Menu.id |
-| **MenuItem** | One transcribed dish-on-page line item, with price and (x, y) position | `menu_page_id` → MenuPage.id, `dish_id` → Dish.id |
-| **Dish** | One normalized/deduplicated dish with appearance counts and price range | referenced by MenuItem.dish_id |
+- [New York Public Library Whats On The Menu Agentic Access](https://apis.io/agentic-access/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-agentic-access/)
 
-## Artifacts
+#### JSON Schema (4)
 
-- **OpenAPI** (`openapi/`) — documents the historical `api.menus.nypl.org` HTTP contract (retired Jan 2025), retained for reference.
-- **JSON Schema** (`json-schema/`) — one schema per data entity: Menu, MenuPage, MenuItem, Dish.
-- **JSON Structure** (`json-structure/`) — single dataset structure describing all four tables and their relationships.
-- **JSON-LD** (`json-ld/`) — linked-data context aligning fields to schema.org and Dublin Core.
-- **Examples** (`examples/`) — representative record for each entity.
-- **Vocabulary** (`vocabulary/`) — domain taxonomy, controlled values, and semantic alignments.
-- **Plans / Rate Limits / FinOps** — capture the historical token-based access policy (5,000 requests/day, 2 requests/second) of the retired API.
+The data models the API reads and writes.
 
-## APIs
+- [Dish](https://apis.io/schemas/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-dish/)
+- [Menu](https://apis.io/schemas/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menu/)
+- [MenuItem](https://apis.io/schemas/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menu-item/)
+- [MenuPage](https://apis.io/schemas/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menu-page/)
 
-### NYPL What's On The Menu API
+#### JSON Structure (1)
 
-The NYPL What's On The Menu API exposed the full Menus dataset for programmatic exploration. Endpoints covered menus and their pages, dishes, search across both, and filtering by year, status, and other properties. Responses were JSON or XML, with token-based authentication, daily rate limits, and pagination headers. The live API at api.menus.nypl.org was retired in January 2025; the OpenAPI definition here documents the historical contract, and the four-table CSV dataset (Menu, MenuPage, MenuItem, Dish) remains downloadable from the Amazon S3 archive as the durable data interface.
+Data models expressed in JSON Structure.
 
-**Human URL:** [http://nypl.github.io/menus-api/](http://nypl.github.io/menus-api/)
+- [New York Public Library Whats On The Menu Dataset Structure](https://apis.io/json-structure/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-dataset-structure/)
 
-**Base URL:** `http://api.menus.nypl.org`
+#### JSON-LD (1)
 
-#### Tags
+Linked-data contexts for the provider's vocabulary.
 
-- Libraries
-- Menus
-- Restaurants
-- History
-- Open Data
+- [New York Public Library Whats On The Menu Context](https://apis.io/jsonld/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-context/)
 
-#### Properties
+#### Vocabulary (1)
 
-- [Documentation](http://nypl.github.io/menus-api/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/new-york-public-library-whats-on-the-menu/refs/heads/main/openapi/new-york-public-library-whats-on-the-menu-openapi-original.yaml)
-- [Project Site](https://www.nypl.org/research/support/whats-on-the-menu)
-- [DataAPI (S3 bulk CSV export)](https://s3.amazonaws.com/menusdata.nypl.org/gzips/)
-- [DataDictionary](http://curatingmenus.org/data_dictionary/)
-- JSONSchema, JSONStructure, JSONLD, Vocabulary (see artifact folders)
+The provider's domain terms, defined.
 
-#### Contact
+- [NYPL What's On The Menu Vocabulary](https://apis.io/vocabularies/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-vocabulary/)
 
-- **FN:** NYPL Menus Project
-- **Email:** menus@nypl.org
+#### Examples (4)
 
-## Common Properties
+Example requests and responses.
 
-- [GitHubOrganization](https://github.com/NYPL)
+- [New York Public Library Whats On The Menu Dish Example](https://apis.io/examples/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-dish-example/)
+- [New York Public Library Whats On The Menu Menu Example](https://apis.io/examples/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menu-example/)
+- [New York Public Library Whats On The Menu Menu Item Example](https://apis.io/examples/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menu-item-example/)
+- [New York Public Library Whats On The Menu Menu Page Example](https://apis.io/examples/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-menu-page-example/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [NYPL What's On The Menu Dishes API](https://apis.io/collections/new-york-public-library-whats-on-the-menu/open-new-york-public-library-whats-on-the-menu-dishes-api/)
+- [NYPL What's On The Menu Dishes Menus API](https://apis.io/collections/new-york-public-library-whats-on-the-menu/open-new-york-public-library-whats-on-the-menu-menus-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [New York Public Library What's On The Menu — jsonschema rules](https://apis.io/rules/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [New York Public Library Whats On The Menu Authentication](https://apis.io/security/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-authentication/)
+- [New York Public Library Whats On The Menu Domain Security](https://apis.io/security/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [New York Public Library Whats On The Menu Plans Pricing](https://apis.io/plans/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [New York Public Library Whats On The Menu Rate Limits](https://apis.io/rate-limits/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [New York Public Library Whats On The Menu Finops](https://apis.io/finops/new-york-public-library-whats-on-the-menu/new-york-public-library-whats-on-the-menu-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.nypl.org/research/support/whats-on-the-menu)
 - [Documentation](http://nypl.github.io/menus-api/)
-- [DataDictionary](http://curatingmenus.org/data_dictionary/)
+- [GitHub](https://github.com/NYPL)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
+**Kin Score 30.5** — thin · rubric 0.24.0 · scored 2026-10-17
 
-**Email:** kin@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.5 |
+| Contract governance | 23.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 7.9 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/new-york-public-library-whats-on-the-menu/](https://apis.io/providers/new-york-public-library-whats-on-the-menu/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for New York Public Library What's On The Menu: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/new-york-public-library-whats-on-the-menu/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
